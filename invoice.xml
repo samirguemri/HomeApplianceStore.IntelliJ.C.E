@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<invoice invoiceNumber="INV/213474">
+    <issueDate>24 oct. 2020</issueDate>
+    <customer customerId="Cust_1501">
+        <name>Samir</name>
+        <address>Corniche Sainte Rosalie Nice</address>
+        <zip>06000</zip>
+        <phoneNumber>1234567890</phoneNumber>
+        <login>samir</login>
+        <password>pwd</password>
+    </customer>
+    <items>
+        <item>
+            <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="printer">
+                <productRef>P_25060106</productRef>
+                <productType>imprimante</productType>
+                <name>Hp</name>
+                <description>Description Imprimante Hp</description>
+                <price>49.0</price>
+                <availableStock>30</availableStock>
+                <ink>hp302</ink>
+            </product>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <deliveryMode>
+        <mode>ExpressHomeDelivery</mode>
+        <price>6.99</price>
+    </deliveryMode>
+    <price>55.99</price>
+    <paid>false</paid>
+</invoice>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script th:inline="javascript">
+
+        function ddlSelect() {
+
+            const customerList = /*[[${customerList}]]*/ 'customerList';
+            let index = document.getElementById("customerDropdown").selectedIndex;
+            let customer = customerList[index-1];
+            document.getElementById("customerId").value= customer["customerId"].uid;
+            document.getElementById("name").value= customer["name"];
+            document.getElementById("address").value= customer["address"];
+            document.getElementById("zip").value= customer["zip"];
+            document.getElementById("phoneNumber").value= customer["phoneNumber"];
+        }
+
+    </script>
+</head>
+<body>
+display Customer
+
+    <div th:object="${customerList}">
+        <select id="customerDropdown" name="customerDropdown" onchange="ddlSelect()">
+            <option value="">-- Customers --</option>
+            <option th:each="customer : ${customerList}" th:text="${customer.name}"></option>
+        </select>
+
+        <table id="table" border="0" cellpadding="10">
+            <tr>
+                <td>customerId</td>
+                <td>
+                    <input id="customerId" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>
+                    <input id="name" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td>
+                    <input id="address" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>zip</td>
+                <td>
+                    <input id="zip" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>phoneNumber</td>
+                <td>
+                    <input id="phoneNumber" type="text" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

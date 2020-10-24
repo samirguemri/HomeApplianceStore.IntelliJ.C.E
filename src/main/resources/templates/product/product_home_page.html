@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function setAttributeFunction(){
+            let quantity = document.getElementById("quantity").value;
+            return quantity;
+        }
+    </script>
+</head>
+<body>
+    <p>Product</p>
+    <div>
+        <span>Presentation Of The Product</span><br>
+        <table th:object="${product}" border="2px" cellpadding="10px">
+            <thead>
+                <tr>
+                    <td>productType</td>
+                    <td>name</td>
+                    <td>description</td>
+                    <td th:each="field : ${fields}" th:text="${field.name}"></td>
+                    <td>price</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="*{productType}">productType</td>
+                    <td th:text="*{name}">name</td>
+                    <td th:text="*{description}">description</td>
+                    <td th:each="field : ${fields}" th:text="*{__${field.name}__}"></td>
+                    <td th:text="*{price}">price</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <form action="#" method="post">
+        <input id="quantity" type="number" min="1" max="10" value="1" size="3px" name="quantity" />
+        <input type="submit" value="Buy Now" th:formaction="@{/shoppingCart/buy/__${product.productRef}__}" >
+        <input type="submit" value="Add To Basket" th:formaction="@{/shoppingCart/add/__${product.productRef}__}" >
+        <button type="submit" th:formaction="@{/shop/shopping}" >Continue Shopping</button>
+    </form>
+</body>
+</html>

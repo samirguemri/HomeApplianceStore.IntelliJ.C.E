@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Basket Home Page
+    <div>
+        <table id="listOfItems" border="1px" cellpadding="10px">
+            <thead>
+                    <td>Item</td>
+                    <td>Quantity</td>
+                    <td>Action</td>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${shoppingCart}">
+                    <td><a th:href="@{/product/display/__${item.key}__}" th:text="${item.key}" method="post" /></td>
+                    <td th:text="${item.value}"></td>
+                    <td>
+                        <form action="#" method="post">
+                            <input type="number" name="quantity" min="0" max="10" th:value="${item.value}" />
+                            <input type="submit" value="Update" th:formaction="@{/shoppingCart/update/__${item.key}__}">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        <span><a th:href="@{/shoppingCart/buy}">Buy Now</a></span>
+        <span><a th:href="@{/shop/shopping}">Continue Shopping</a></span>
+    </p>
+</body>
+</html>

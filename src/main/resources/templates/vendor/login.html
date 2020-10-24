@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Appliance Store</title>
+</head>
+<body>
+    <p>Vendor Connection</p>
+    <div align="center">
+        <form action="#" th:action="@{/vendor/signing}" method="post">
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td><label for="loginInput">Login</label></td>
+                    <td><input id="loginInput" name="login"></td>
+                </tr>
+                <tr>
+                    <td><label for="passwordInput">Password</label></td>
+                    <td><input id="passwordInput" name="pwd"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" >Longin</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

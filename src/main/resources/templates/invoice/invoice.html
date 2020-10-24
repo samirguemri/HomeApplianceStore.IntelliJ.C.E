@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Invoice Page</h1>
+    <br><br><br>
+    <div>
+        <label for="billNumber">Invoice Reference</label>
+        <input id="billNumber" type="text" th:value="${invoice.getInvoiceNumber()}"><br>
+        <label for="customerId">Customer Reference</label>
+        <input id="customerId" type="text" th:value="${invoice.getCustomerId()}"><br>
+        <label for="issueDate">Invoice Date</label>
+        <input id="issueDate" type="text" th:value="${invoice.getIssueDate()}">
+    </div>
+    <hr>
+    <div>
+        <th:block th:each="item: ${invoice.getProductList()}">
+            <span th:text="${item.key}"/><br>
+        </th:block><br>
+    </div>
+    <hr>
+    <div>
+        <label for="totalCost">Total</label>
+        <input id="totalCost" type="text" th:value="${invoice.getPrice()}">
+    </div>
+    <hr>
+    <div>
+        <form th:action="@{/invoice/send}" method="post">
+            <input type="hidden" name="invoiceNumber" th:value="${invoice.getInvoiceNumber()}">
+            <input type="submit" value="send the invoice to ..">
+            <input type="text" name="email">
+        </form>
+    </div>
+</body>
+</html>

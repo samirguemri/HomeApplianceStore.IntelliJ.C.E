@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Shopping Validation
+    <div>
+        <table id="listOfItems" border="1px" cellpadding="10px">
+            <thead>
+                <td>Item</td>
+                <td>Quantity</td>
+                <td>Cost</td>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${shoppingCart}">
+                    <th:block th:object="${item}">
+
+                        <td th:text="${item.key}"></td>
+                        <td th:text="${item.value}"></td>
+                        <td>
+                            <th:block th:each="product : ${productList}">
+                                <th:block th:if="${product.productRef == item.key}" th:remove="tag">
+                                        <th:block  th:with="productPrice=${productList.get(__${productStat.index}__).price}, quantity=${item.value}">
+                                            <th:block th:with="cost=${productPrice * quantity}" th:text="${cost}" />
+                                        </th:block>
+                                </th:block>
+                            </th:block>
+                        </td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <td colspan="2">Total Cost :</td>
+                    <td th:text="${totalCost}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <form th:action="@{/shoppingCart/payment}" method="post">
+            <input type="hidden" name="totalCost" th:value="${totalCost}">
+            <input type="submit" value="Proceed to Payment">
+        </form>
+    </div>
+</body>
+</html>

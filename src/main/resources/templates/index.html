@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Appliance Store</title>
+</head>
+<body>
+    <p>Home Appliance Store !</p>
+    <p>
+        <a th:href="@{/manager/login}">Manager</a><br/>
+        <a th:href="@{/vendor}">Vendor</a><br/>
+        <a th:href="@{/customer/login}">Customer Log In</a><span> ## </span><a th:href="@{/customer/signup}"> Customer Sing Up</a><br/>
+    </p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Payment Page
+    <div>
+        <h2>Payment Process</h2>
+    </div>
+    <form action="#" th:action="@{/shoppingCart/payment/invoice}" method="post">
+        <input type="checkbox" id="1" name="delivery" value="home">Home Delivery</input><br>
+
+        <input type="checkbox" id="2" name="delivery" value="express"
+               onclick="var input = document.getElementById('city'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}">Express Home Delivery</input>
+        <input list="cities" id="city" name="param" value="NICE" disabled="true">
+        <datalist id="cities">
+            <span th:each="city : ${cities}">
+                <option th:value="${city}">
+            </span>
+        </datalist><br>
+
+        <input type="checkbox" id="3" name="delivery" value="relay"
+               onclick="var input = document.getElementById('relayPointNumber'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}">Relay Point Delivery</input>
+        <input type="number" id="relayPointNumber" name="param" value="0" disabled="true"><br>
+
+        <input type="checkbox" id="4" name="delivery" value="store">Store Pick-up</input><br><br>
+
+        <input type="hidden" name="totalCost" th:value="${totalCost}">
+        <input type="submit" value="Generate the Invoice"/>
+    </form>
+</body>
+</html>

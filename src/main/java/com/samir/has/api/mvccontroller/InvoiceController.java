@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.transform.TransformerException;
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -77,6 +78,7 @@ public class InvoiceController {
         }
 
         model.addAttribute("email",email);
+        invoiceService.sendEmail(email);
         return "invoice/send";
     }
 

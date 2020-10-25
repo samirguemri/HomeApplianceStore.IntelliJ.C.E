@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.samir.has.api.doa.IInvoiceDao;
 import com.samir.has.api.doa.IProductDao;
@@ -40,6 +37,9 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
+
+import javax.mail.*;
+import javax.mail.internet.*;
 
 @Service("invoiceService")
 public class InvoiceService {
@@ -166,4 +166,45 @@ public class InvoiceService {
 
     }
 
+    public void sendEmail(String email) {
+
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+        properties.setProperty("mail.smtp.port", "465");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.ssl.enable", "true");
+
+        Authenticator authenticator = new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("samir.guemri@gmail.com", "vfxljgubideuwwii");
+            }
+        };
+        Session session = Session.getInstance(properties,authenticator);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("invoice@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            message.setSubject("Invoice from your HAS Store");
+
+            Multipart multipart = new MimeMultipart();
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            MimeBodyPart textPart = new MimeBodyPart();
+            try {
+                attachmentPart.attachFile(new File("invoice.pdf"));
+                multipart.addBodyPart(attachmentPart);
+                textPart.setText("This is text");
+                multipart.addBodyPart(textPart);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            message.setContent(multipart);
+
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }

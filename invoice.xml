@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<invoice invoiceNumber="INV/213474">
-    <issueDate>24 oct. 2020</issueDate>
-    <customer customerId="Cust_1501">
+<invoice invoiceNumber="INV/400776">
+    <issueDate>25 oct. 2020</issueDate>
+    <customer customerId="Cust_0687">
         <name>Samir</name>
         <address>Corniche Sainte Rosalie Nice</address>
         <zip>06000</zip>
@@ -12,7 +12,7 @@
     <items>
         <item>
             <product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="printer">
-                <productRef>P_25060106</productRef>
+                <productRef>P_29263455</productRef>
                 <productType>imprimante</productType>
                 <name>Hp</name>
                 <description>Description Imprimante Hp</description>
